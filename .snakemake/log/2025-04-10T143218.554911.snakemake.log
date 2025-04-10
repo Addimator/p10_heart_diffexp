@@ -1,0 +1,22 @@
+host: fedora
+Building DAG of jobs...
+Creating conda environment workflow/envs/create_tsvs.yaml...
+Downloading and installing remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /home/adrian/Documents/Promotion/p10_heart/workflow/envs/create_tsvs.yaml:
+Command:
+conda env create --quiet --no-default-packages --file "/home/adrian/Documents/Promotion/p10_heart/.snakemake/conda/aae1d43fab7cc84eaa6ddc682b0f9b92_.yaml" --prefix "/home/adrian/Documents/Promotion/p10_heart/.snakemake/conda/aae1d43fab7cc84eaa6ddc682b0f9b92_"
+Output:
+Channels:
+ - bioconda
+ - conda-forge
+ - nodefaults
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed
+
+LibMambaUnsatisfiableError: Encountered problems while solving:
+  - package openpyxl-3.1.5-py39hf860d4a_0 is excluded by strict repo priority
+
+
+

@@ -1,0 +1,11 @@
+prefix=/home/adrian/Documents/Promotion/p10_heart/.snakemake/conda/31a74201514e57a22ef8a6882f45dddf_
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: History
+Description: Gnu History library for managing previously-entered lines
+URL: http://tiswww.cwru.edu/php/chet/readline/rltop.html
+Version: 8.2
+Libs: -L${libdir} -lhistory
+Cflags: -I${includedir}
