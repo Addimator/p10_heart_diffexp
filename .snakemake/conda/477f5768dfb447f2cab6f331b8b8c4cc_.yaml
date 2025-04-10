@@ -1,5 +1,0 @@
-channels:
-  - bioconda
-dependencies:
-  - pandas=2.2
-  -  openpyxl=3.1
