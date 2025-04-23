@@ -7,23 +7,35 @@ min_version("6.10.0")
 configfile: "config/config.yaml"
 
 
-# # declare https://github.com/snakemake-workflows/rna-seq-kallisto-sleuth as a module
-# module rna_seq_kallisto_sleuth:
-#     snakefile:
-#         # "/homes/aprinz/rna-seq-kallisto-sleuth/workflow/Snakefile"
-#         "/home/adrian/Documents/Promotion/rna-seq-kallisto-sleuth/workflow/Snakefile"
-#         # github("snakemake-workflows/rna-seq-kallisto-sleuth", path="workflow/Snakefile", tag="v2.7.1")
-#     config:
-#         config
+# declare https://github.com/snakemake-workflows/rna-seq-kallisto-sleuth as a module
+module rna_seq_kallisto_sleuth:
+    snakefile:
+        # "/home/adrian/Documents/Promotion/rna-seq-kallisto-sleuth/workflow/Snakefile"
+        # "/homes/aprinz/rna-seq-kallisto-sleuth/workflow/Snakefile"
+        # "/home/adrian/Documents/Promotion/rna-seq-kallisto-sleuth/workflow/Snakefile"
+        github(
+            "snakemake-workflows/rna-seq-kallisto-sleuth",
+            path="workflow/Snakefile",
+            tag="v2.10.0",
+        )
+    config:
+        config
 
 
-# # use all rules from https://github.com/snakemake-workflows/rna-seq-kallisto-sleuth
-# use rule * from rna_seq_kallisto_sleuth
+# use all rules from https://github.com/snakemake-workflows/rna-seq-kallisto-sleuth
+use rule * from rna_seq_kallisto_sleuth
+
+
+# rule all:
+#     input:
+#         "config/samples.tsv",
+#         "config/units.tsv",
 
 
 rule create_samples:
     input:
-        "resources/sample_desc.xlsx",
+        desc="resources/sample_desc.xlsx",
+        data="resources/data/",
     output:
         "config/samples.tsv",
     conda:
@@ -34,7 +46,8 @@ rule create_samples:
 
 rule create_units:
     input:
-        "resources/sample_desc.xlsx",
+        desc="resources/sample_desc.xlsx",
+        data="resources/data/",
     output:
         "config/units.tsv",
     conda:

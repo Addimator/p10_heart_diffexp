@@ -1,4 +1,9 @@
+results/**
+resources/**
+logs/**
 .snakemake
-resources
-results
+.snakemake/**
+local/**
 report.zip
+config/samples.tsv
+config/units.tsv

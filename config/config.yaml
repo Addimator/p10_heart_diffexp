@@ -5,7 +5,7 @@ experiment:
   # If set to `true`, this option allows the workflow to analyse 3-prime RNA seq data obtained from Quantseq protocol by Lexogen.
   # For more information https://www.lexogen.com/quantseq-3mrna-sequencing/
   3-prime-rna-seq:
-    activate: false
+    activate: true
     # Specify vendor of the used protocol. Currently, only lexogen is supported.
     vendor: lexogen
     # this allows to plot QC of aligned read postion for specific transcripts (or 'all' transcripts)
@@ -52,16 +52,37 @@ diffexp:
   exclude:
   # model for sleuth differential expression analysis
   models:
-    model_X:
-      full: ~condition + batch_effect
-      reduced: ~batch_effect
-      # Covariate / sample sheet column that shall be used for fold
-      # change/effect size based downstream analyses.
-      primary_variable: condition
-      # base level of the primary variable (this should be one of the entries
-      # in the primary_variable sample sheet column and will be considered as
-      # denominator in the fold change/effect size estimation).
-      base_level: untreated
+      t3_vs_ctr_in_gs_mi:
+        full: ~t3_vs_ctr_in_gs_mi + geburtsdatum + stamm + seziertag
+        reduced: ~geburtsdatum + stamm + seziertag
+        primary_variable: t3_vs_ctr_in_gs_mi
+        base_level: "-"
+      t3_vs_ctr_in_ko_mi:
+        full: ~t3_vs_ctr_in_ko_mi + geburtsdatum + stamm + seziertag
+        reduced: ~geburtsdatum + stamm + seziertag
+        primary_variable: t3_vs_ctr_in_ko_mi
+        base_level: "-"
+      t3_vs_ctr_in_wt_mi:
+        full: ~t3_vs_ctr_in_wt_mi + geburtsdatum + stamm + seziertag
+        reduced: ~geburtsdatum + stamm + seziertag
+        primary_variable: t3_vs_ctr_in_wt_mi
+        base_level: "-"
+      t3_vs_ctr_in_gs_sham:
+        full: ~t3_vs_ctr_in_gs_sham + geburtsdatum + stamm + seziertag
+        reduced: ~geburtsdatum + stamm + seziertag
+        primary_variable: t3_vs_ctr_in_gs_sham
+        base_level: "-"
+      t3_vs_ctr_in_ko_sham:
+        full: ~t3_vs_ctr_in_ko_sham + geburtsdatum + stamm + seziertag
+        reduced: ~geburtsdatum + stamm + seziertag
+        primary_variable: t3_vs_ctr_in_ko_sham
+        base_level: "-"
+      t3_vs_ctr_in_wt_sham:
+        full: ~t3_vs_ctr_in_wt_sham + geburtsdatum + stamm + seziertag
+        reduced: ~geburtsdatum + stamm + seziertag
+        primary_variable: t3_vs_ctr_in_wt_sham
+        base_level: "-"
+
   # significance level to use for volcano, ma- and qq-plots
   sig-level:
     volcano-plot: 0.05
@@ -113,14 +134,36 @@ meta_comparisons:
   # Define here the comparisons under interest
   comparisons:
     # Define any name for comparison. You can add as many comparisions as you want
-    model_X_vs_model_Y:
+    ko_vs_wt_mi:
       items:
-        # Define the two underlying models for the comparison. The models must be defined in the diffexp/models in the config
-        # items must be of form <arbitrary label for plot-axis>: <existing diffexp model from config> 
-        X: model_X
-        Y: model_Y
-      # Define label for datavzrd report
-      label: model X vs. model Y
+        ko: t3_vs_ctr_in_ko_mi
+        wt: t3_vs_ctr_in_wt_mi
+      label: Knockout vs Wildtype in Myokardinfarkt
+    gs_vs_wt_mi:
+      items:
+        gs: t3_vs_ctr_in_gs_mi
+        wt: t3_vs_ctr_in_wt_mi
+      label: Genomic Signaling-deficient vs Wildtype in Myokardinfarkt
+    ko_vs_gs_mi:
+      items:
+        ko: t3_vs_ctr_in_ko_mi
+        gs: t3_vs_ctr_in_gs_mi
+      label: Knockout vs Genomic Signaling-deficient in Myokardinfarkt
+    ko_vs_wt_sham:
+      items:
+        ko: t3_vs_ctr_in_ko_sham
+        wt: t3_vs_ctr_in_wt_sham
+      label: Knockout vs Wildtype in Sham-OP 
+    gs_vs_wt_sham:
+      items:
+        ko: t3_vs_ctr_in_gs_sham
+        wt: t3_vs_ctr_in_wt_sham
+      label: Genomic Signaling-deficient vs Wildtype in  Sham-OP 
+    ko_vs_gs_sham:
+      items:
+        ko: t3_vs_ctr_in_ko_sham
+        wt: t3_vs_ctr_in_gs_sham
+      label: Knockout vs Genomic Signaling-deficient in  Sham-OP 
 
 report:
   # make this `true`, to get excel files for download in the snakemake
