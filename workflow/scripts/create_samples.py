@@ -2,11 +2,9 @@ import pandas as pd
 import numpy as np
 import openpyxl
 
-# excel_file = snakemake.input[0]
-# output_file = snakemake.output[0]
-excel_file = "/home/adrian/Documents/Promotion/p10_heart/resources/sample_desc.xlsx"
-output_file = "/home/adrian/Documents/Promotion/p10_heart/config/samples.tsv"
 
+excel_file = snakemake.input["desc"]
+output_file = snakemake.output[0]
 
 # Read excel and create header
 df = pd.read_excel(excel_file, engine="openpyxl")

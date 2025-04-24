@@ -11,13 +11,12 @@ configfile: "config/config.yaml"
 module rna_seq_kallisto_sleuth:
     snakefile:
         # "/home/adrian/Documents/Promotion/rna-seq-kallisto-sleuth/workflow/Snakefile"
-        # "/homes/aprinz/rna-seq-kallisto-sleuth/workflow/Snakefile"
-        # "/home/adrian/Documents/Promotion/rna-seq-kallisto-sleuth/workflow/Snakefile"
-        github(
-            "snakemake-workflows/rna-seq-kallisto-sleuth",
-            path="workflow/Snakefile",
-            tag="v2.10.0",
-        )
+        "/homes/aprinz/rna-seq-kallisto-sleuth/workflow/Snakefile"
+        # github(
+        #     "snakemake-workflows/rna-seq-kallisto-sleuth",
+        #     path="workflow/Snakefile",
+        #     tag="v2.11.0",
+        # )
     config:
         config
 
